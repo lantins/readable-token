@@ -16,9 +16,6 @@ spec = Gem::Specification.new do |s|
   s.files              += Dir.glob('{test/**/*,lib/**/*}')
   s.require_paths       = ['lib']
 
-  # min ruby version
-  #s.required_ruby_version = ::Gem::Requirement.new(">= 1.9")
-
   # development dependencies
   s.add_development_dependency('bundler',        '~> 1.0')
   s.add_development_dependency('rake',           '>= 9.0')
