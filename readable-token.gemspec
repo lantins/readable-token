@@ -28,3 +28,4 @@ spec = Gem::Specification.new do |s|
   s.description       = <<-EOL
 A tiny Ruby library that generates human readable "tokens" that are easy to read and remember.
 end
+EOL
