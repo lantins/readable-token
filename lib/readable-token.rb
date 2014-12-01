@@ -1,31 +1,39 @@
 require 'readable-token/version'
 
-class ReadableToken
+module ReadableToken
 
-  def initialize
-    @records = []
+  # Access to current list of words
+  def self.words
+    @@words ||= %w{dream season applause music venue talk top spoon fork tea coffee soup eat drink chat social happy doughnut beans bistro cafe lunch java ruby penguin lion leopard cake tiger crab fish moo milk owl roast aroma balance barista blend body decaf espresso flavor mocha latte organic friend}
   end
 
+  # Set list of words to the given array
+  def self.words=(vals)
+    @@words = vals
+  end
+
+  # Generate a new token.
   def self.generate(opts = {})
+    # set default options and merge with user provided
     options = {
       min: 8,
       max: nil
     }.merge(opts)
-
-    words = %w{music venue talk top spoon fork tea coffee soup eat drink chat social happy doughnut beans bistro cafe lunch java ruby penguin lion leopard cake tiger crab fish moo milk owl roast aroma balance barista blend body decaf espresso flavor mocha latte organic friend}
 
     segments = []
 
     # add number
     segments << rand(1..9).to_s
 
+    # count number of loops so were not spinning our wheels if we can't meet
+    # the criteria requested by the user.
     looped = 0
     while current_length_of(segments) < options[:min]
-      segments.delete_if(&:nil?).delete_if(&:empty?)
+      new_word = ''
+      remove_blanks!(segments)
+
       looped += 1
       break if looped > 20
-
-      new_word = ''
 
       current_length = current_length_of(segments)
       if options[:max] && options[:max] > 0
@@ -40,7 +48,7 @@ class ReadableToken
 
       segments << new_word
     end
-    segments.delete_if(&:nil?).delete_if(&:empty?)
+    remove_blanks!(segments)
 
     # join it all together to give us a token
     segments.reverse.join('-')
@@ -48,13 +56,19 @@ class ReadableToken
 
   private
 
+  # Remove blank, empty, nil array elements
+  def self.remove_blanks!(segments)
+    segments.delete_if(&:nil?).delete_if(&:empty?)
+  end
+
+  # Calculate the current length
   def self.current_length_of(segments)
     segments.join('-').length
   end
 
+  # Filter array of words by their maximum length
   def self.filter_by_length(words, max)
-    filtered = words.select { |w| w.length <= max }
-    filtered
+    words.select { |w| w.length <= max }
   end
 
 end
