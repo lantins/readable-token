@@ -18,7 +18,7 @@ spec = Gem::Specification.new do |s|
 
   # development dependencies
   s.add_development_dependency('bundler',        '~> 1.0')
-  s.add_development_dependency('rake',           '~> 9.0')
+  s.add_development_dependency('rake',           '~> 10.0')
   s.add_development_dependency('minitest',       '~> 5.0')
   s.add_development_dependency('simplecov',      '~> 0.7.1')
   s.add_development_dependency('yard',           '~> 0.8')
