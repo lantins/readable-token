@@ -24,14 +24,14 @@ Require the gem in your code:
 
 ### Generate a token
 
-    ReadableToken.generate
-    ReadableToken.generate(min: 6)
-    ReadableToken.generate(max: 8)
-    ReadableToken.generate(separator: '|')
+    ReadableToken.generate          # => "barista-spoon-1"
+    ReadableToken.generate(min: 20) # => "doughnut-fork-aroma-7"
+    ReadableToken.generate(max: 10) # => "penguin-2"
 
 ### Loading your own word list
 
-    generator = ReadableToken.new(%w(cat penguin password))
+    ReadableToken.words = %w(cat penguin password)
+    ReadableToken.generate
 
 # Development
 
@@ -42,5 +42,3 @@ Require the gem in your code:
 
     # hints where to improve docs
     bundle exec inch
-
-# TODO

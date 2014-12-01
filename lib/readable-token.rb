@@ -1,5 +1,6 @@
 require 'readable-token/version'
 
+# A tiny Ruby library for generating human readable "tokens".
 module ReadableToken
 
   # Access to current list of words
