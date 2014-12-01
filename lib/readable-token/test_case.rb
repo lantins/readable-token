@@ -24,4 +24,10 @@ require 'readable-token'
 
 # --- Extend Minitest::Test ----------------------------------------------------
 class ReadableToken::TestCase < Minitest::Test
+
+  def assert_valid_token(token)
+    assert token, 'we should have a token'
+    assert_match /^([a-z]+-)+\d+$/i, token, 'token does not match expected pattern'
+  end
+
 end
